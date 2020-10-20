@@ -43,7 +43,7 @@ def proxy_generator(url):
 @timeit
 def get_proxys(url_ip, url_test):
     proxy_ls = proxy_generator(url_ip)
-    proxy_valid_set = set()
+    proxy_valid_list = []
     for proxy in  proxy_ls:
         print("Trying proxy: {}".format(proxy))
         try:
@@ -51,13 +51,13 @@ def get_proxys(url_ip, url_test):
             response_code = response.status_code
             if response_code == 200:
                 print("Succeed!!!!!!!!")
-                proxy_str = "http://" + proxy["https"]
-                proxy_valid_set.add(proxy_str)
+                proxy_valid_list.append(proxy)
+                break
             else:
                 print("Response in error code: {}".format(response_code))
         except Exception as e:
             print(e)
-    return list(proxy_valid_set)
+    return proxy_valid_list
 
 
 def update_json(data, path=JSON_OUTPUT_PATH):
