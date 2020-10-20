@@ -52,7 +52,6 @@ def get_proxys(url_ip, url_test):
             if response_code == 200:
                 print("Succeed!!!!!!!!")
                 proxy_valid_list.append(proxy)
-                break
             else:
                 print("Response in error code: {}".format(response_code))
         except Exception as e:
